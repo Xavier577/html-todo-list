@@ -1,0 +1,164 @@
+:root {
+  --primary-color: #06be77;
+  --secondary-color: #0e96d4;
+}
+
+:focus:not(select) {
+  outline: 1px solid var(--secondary-color);
+}
+
+body {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+header {
+  font-size: 1.5rem;
+}
+header,
+form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  background: white;
+}
+
+form button {
+  color: var(--primary-color);
+  border: 1px solid currentColor;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#clear-all {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: black;
+  color: antiquewhite;
+  cursor: pointer;
+}
+
+.todo-list {
+  list-style: none;
+  min-width: 70%;
+}
+
+.todo-div {
+  background-color: white;
+  color: black;
+  margin: 0.5rem;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.todo-li {
+  flex: 1;
+  padding: 0.5rem;
+}
+li {
+  overflow-x: hidden;
+}
+li:focus {
+  border:none;
+  outline: none;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--secondary-color);
+  width: 10rem;
+  padding: 1rem;
+}
+
+.select {
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.select::after {
+  content: "\25bc";
+  background-color: rgb(19, 86, 117);
+  position: absolute;
+  color: whitesmoke !important ;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.select:hover::after {
+  background-color: white;
+  color: var(--primary-color) !important;
+  border: 1px solid var(--primary-color);
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}
+
+.trash-btn,
+.done-btn {
+  background-color: #111111;
+  color: white;
+  padding: 1rem;
+  border: none;
+  font-size: 1.74rem;
+  cursor: pointer;
+  height: 75px;
+}
+
+.done-btn {
+  background-color: var(--primary-color);
+}
+
+.trash-btn {
+  font-size: 2.2rem;
+}
+
+/* animation */
+.fall {
+  transform: translateY(8rem) rotate(20deg);
+  opacity: 0;
+}
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
