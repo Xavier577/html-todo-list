@@ -5,29 +5,15 @@ const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".filter-todo");
 const clearAllBtn = document.querySelector("#clear-all");
 // Personal tool
-const print = (any) => console.log(any)
-
+const print = (any) => {
+  console.log(any);
+};
 
 //functions
-const saveToLocalStorage = (todo) => {
-  // check if i have things in there
-  let todos;
-  
-  if(localStorage.getItem("todos") === null) {
-      todos = []
-  } else {
-      todos = JSON.parse(localStorage.getItem("todos"))
-  }
-
-  todos.push(todo)
-
-  localStorage.setItem("todos", JSON.stringify(todos))
-}
 const addTodo = (event) => {
   // this function creates and add todos to the todolist with it's functional components such as completed button and delete button
   // prevent default
   event.preventDefault();
-// SAVE TO LOCALSTORAGE
 
   // create todoList
 
@@ -42,9 +28,6 @@ const addTodo = (event) => {
   todo.addEventListener('click', () => todo.contentEditable = true)
   todo.innerText = todoInput.value; // setting the todo list to the input value
   todo.classList.add("todo-li");
-  //ADDING TODO TO LOCALSTORAGE
-    //  saveToLocalStorage(todoInput.value)
-  // clearing the input field  
   todoInput.value = null;
 
   // prevent empty values from being added
@@ -79,33 +62,16 @@ const addTodo = (event) => {
     });
   });
 };
-// this function when invoked removes all the items on the todo list
-const removeAllTodos = (event) => todoList.innerHTML = null
-  
-  
-
-
-const  filterTodo = (event) => {
-  const todos = [...todoList.children]
-  todos.forEach(todo => {
-      switch(event.target.value) {
-          case 'all':
-              todo.style.display = 'flex'
-              break;
-          case 'completed':
-              todo.classList.contains('completed') ? todo.style.display = 'flex' : todo.style.display = 'none'
-              break;
-          case 'uncompleted':
-              !todo.classList.contains('completed') ? todo.style.display = 'flex' : todo.style.display = 'none'
-          break;
-      }
-  })
-}
+const removeAllTodos = (event) => {
+  // this function when invoked removes all the items on the todo list
+  event.preventDefault();
+  todoList.innerHTML = null;
+  localStorage.clear()
+};
 
 // EVENT LISTENERS
 //document.addEventListener("DOMContentLoaded", getTodos);
 todoButton.addEventListener("click", addTodo);
 clearAllBtn.addEventListener("click", removeAllTodos);
-
 //todoList.addEventListener("click", deleteCheck);
-filterOption.addEventListener("click", filterTodo);
+//filterOption.addEventListener("click", filterTodo);
