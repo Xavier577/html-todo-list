@@ -25,15 +25,14 @@ const addTodo = (event) => {
   // created the todo-list and added it to the div
   const todo = document.createElement("li");
   todoDiv.append(todo);
-  todo.addEventListener('click', () => todo.contentEditable = true)
+  //todo.addEventListener('click', () => todo.contentEditable = true)
   todo.innerText = todoInput.value; // setting the todo list to the input value
   todo.classList.add("todo-li");
   todoInput.value = null;
 
   // prevent empty values from being added
-  if (todo.innerHTML === "") {
-    todoDiv.remove();
-  }
+  if (todo.innerHTML === "") todoDiv.remove();
+  
 
   // done button
   const doneBtn = document.createElement("button");
@@ -41,37 +40,47 @@ const addTodo = (event) => {
   doneBtn.innerHTML = "&checkmark;";
   doneBtn.classList.add("done-btn");
   // complete check
-  const completed = () => {
-    todoDiv.classList.toggle("completed");
-  };
+  const completed = () => todoDiv.classList.toggle("completed")
   doneBtn.addEventListener("click", completed);
 
   // delete button
   const deleteBtn = document.createElement("button");
-  todoDiv.appendChild(deleteBtn);
+  todoDiv.append(deleteBtn);
   deleteBtn.innerHTML = "&times";
   deleteBtn.classList.add("trash-btn");
   // delete todo
-  const deleteTodo = () => {
-    todoDiv.classList.add("fall");
-  };
+  const deleteTodo = () => todoDiv.classList.add("fall")
   deleteBtn.addEventListener("click", () => {
     deleteTodo();
-    todoDiv.addEventListener("transitionend", () => {
-      todoDiv.remove();
-    });
+    todoDiv.addEventListener("transitionend", () => todoDiv.remove());
   });
 };
-const removeAllTodos = (event) => {
+const removeAllTodos = () => {
   // this function when invoked removes all the items on the todo list
-  event.preventDefault();
   todoList.innerHTML = null;
   localStorage.clear()
 };
+
+const filterTodo =(event)=> {
+  const todos = [...todoList.children]
+  todos.forEach(todo => {
+      switch(event.target.value) {
+          case 'all':
+              todo.style.display = 'flex'
+              break;
+          case 'completed':
+              todo.classList.contains('completed') ? todo.style.display = 'flex' : todo.style.display = 'none'
+              break;
+          case 'uncompleted':
+              !todo.classList.contains('completed') ? todo.style.display = 'flex' : todo.style.display = 'none'
+          break;
+      }
+  })
+}
 
 // EVENT LISTENERS
 //document.addEventListener("DOMContentLoaded", getTodos);
 todoButton.addEventListener("click", addTodo);
 clearAllBtn.addEventListener("click", removeAllTodos);
 //todoList.addEventListener("click", deleteCheck);
-//filterOption.addEventListener("click", filterTodo);
+filterOption.addEventListener("click", filterTodo);
