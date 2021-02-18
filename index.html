@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoList App</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script> 
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
     <header>
-        <h1>Todo List App</h1>
+      <h1>Todo List App</h1>
     </header>
     <form>
-        <input  type="text"class="todo-input" />
-        <button id="todo-button" class="todo-button" type="submit">
-            +
-        </button>
-        <div class="select">
-            <select name="todo" class="filter-todo" id="">
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="uncompleted">Uncompleted</option>
-            </select>
-        </div>
+      <input type="text" class="todo-input" />
+      <button id="todo-button" class="todo-button" type="submit">+</button>
+      <div class="select">
+        <select name="todo" class="filter-todo" id="">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="uncompleted">Uncompleted</option>
+        </select>
+      </div>
     </form>
-    <div class = 'todo-container'>
-        <button id = 'clear-all'>Remove all</button>
+    <div class="todo-container">
+      <button id="clear-all">Remove all</button>
     </div>
 
     <div class="todo-container">
-        <ul class="todo-list">
-        </ul>
+      <ul class="todo-list"></ul>
     </div>
-    
-</body>
+  </body>
 </html>
